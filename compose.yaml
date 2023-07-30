@@ -1,0 +1,42 @@
+version: '3'
+
+networks:
+  goeio:
+    driver: overlay2
+
+services:
+  producer:
+    build:
+      context: .
+      dockerfile: ./goeio-producer/Dockerfile
+    depends_on:
+      - rabbitmq
+    restart: on-failure
+    ports:
+      - "8080:8080"
+    networks:
+      - goeio
+    environment:
+      - AMQP_URI=amqp://guest:guest@rabbitmq:5672
+
+  consumer:
+    build:
+      context: .
+      dockerfile: ./goeio-consumer/Dockerfile
+    restart: on-failure
+    depends_on:
+      - rabbitmq
+      - producer
+    networks:
+      - goeio
+    environment:
+      - AMQP_URI=amqp://guest:guest@rabbitmq:5672
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    restart: on-failure
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - goeio
