@@ -1,7 +1,7 @@
 package router
 
 import (
-	rabbitmq "goeio/goeio-rabbitmq"
+	rabbitmq "goeio/rabbitmq"
 	"log"
 
 	"github.com/gin-gonic/gin"

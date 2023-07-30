@@ -1,8 +1,8 @@
 package main
 
 import (
-	"goeio/goeio-producer/router"
-	rabbitmq "goeio/goeio-rabbitmq"
+	"goeio/producer/router"
+	rabbitmq "goeio/rabbitmq"
 	"log"
 	"os"
 )

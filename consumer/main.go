@@ -1,7 +1,7 @@
 package main
 
 import (
-	rabbitmq "goeio/goeio-rabbitmq"
+	rabbitmq "goeio/rabbitmq"
 	"log"
 	"os"
 )
